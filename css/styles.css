@@ -178,11 +178,20 @@ h1 {
         /* Adjust right position for smaller screens */
     }
 
-    .resources {
-        padding: 2rem;
-        grid-template-columns: 1fr; /* Single column for small screens */
-        padding-bottom: 4rem; /* Adjust the value as needed */
+    h1 {
+        padding: 0.5rem 1rem; /* Reduce padding for h1 tags */
+        font-size: 1.4em; /* Adjust font size for better mobile fit */
+    }
 
+    p.intro {
+        margin: 0 2rem; /* Reduce horizontal margin for p.intro */
+        padding-top: 1em; /* Adjust top padding for consistency */
+    }
+
+    .resources {
+        padding: 2rem; /* Maintain spacing for resources */
+        grid-template-columns: 1fr; /* Ensure single-column layout */
+        padding-bottom: 4rem; /* Keep space after last card */
     }
 
 }
