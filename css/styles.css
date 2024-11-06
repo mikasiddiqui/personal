@@ -1,8 +1,8 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between; */
+    /* align-items: center; */
     min-height: 100vh;
     margin: 0;
     font-family: "Source Code Pro", monospace;
@@ -16,6 +16,55 @@ body {
     /* Prevent horizontal scrolling on smaller screens */
     overflow-y: auto;
     /* Enable vertical scrolling if necessary */
+}
+
+.resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Flexible columns */
+    gap: 0.5rem; /* Space between columns */
+    padding: 2rem 5rem 1rem 5rem ; /* Reduce padding: 2rem top/bottom, 1rem left/right */
+    width: 100%; /* Ensure it takes full width */
+    max-width: 1200px; /* Optional: Limit maximum width */
+    margin: 0 auto; /* Center the container */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+
+.card {
+    border: 1px solid #ccc; /* Simple border for the cards */
+    border-radius: 8px; /* Rounded corners */
+    padding: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: visible; /* Allow content to overflow */
+}
+
+.card h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card ul li {
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.card ul li a {
+    display: inline-flex;
+    align-items: center; /* Vertically centers text and icon */
+    text-decoration: none;
+    color: #007bff;
+    font-size: 0.9rem;
+    
+}
+
+.card ul li a:hover {
+    text-decoration: underline;
 }
 
 footer {
@@ -33,11 +82,34 @@ footer {
     /* Ensure the footer appears above other content */
 }
 
+footer p.footer-text {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #555; /* Subtle text color */
+    margin: 0;
+}
+
+p.intro {
+    padding-top: 2em; /* Adds spacing for specific paragraphs */
+}
+
 .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
+    justify-content: flex-start;
     align-items: center;
-    flex-grow: 1;
+    padding-top: 6em; /* Adds space from the top */
+
+}
+
+p {
+    font-size: 0.8rem; /* Reduces the text size */
+    line-height: 1.5; /* Improves readability with proper spacing */
+    text-align: justify; /* Centers the text */
+    margin: 0 5rem; /* Adds some horizontal padding for smaller screens */
+    padding-top: 2em; /* Adds space from the top */
+
 }
 
 h1 {
@@ -46,36 +118,12 @@ h1 {
     font-size: 1.6em;
 }
 
-.box {
-    --s: 1em;
-    --t: 0.1em;
-    --g: 1.5em;
-    padding: calc(var(--g) + var(--t));
-    outline-offset: calc(-1*var(--t));
-    transition: .2s;
-    mask:
-        conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s)),
-        linear-gradient(#000 0 0) content-box;
-}
-
-.box.light {
-    outline: var(--t) solid rgba(0, 0, 0, 0.5);
-}
-
-.box.dark {
-    outline: var(--t) solid rgba(255, 255, 255, 0.5);
-}
-
-
-.box:hover {
-    outline-offset: calc(var(--g)/-5);
-}
 
 #switch {
     border-radius: 1em;
     text-align: center;
     width: 20em;
-    height: 4em;
+    height: 6em;
     padding: 1em;
     margin: 0.4em;
     background-size: auto;
@@ -84,7 +132,7 @@ h1 {
     position: absolute;
     top: 0.3em;
     right: 0.3em;
-    z-index: 999;
+    z-index: 1000;
 }
 
 #switch-image {
@@ -122,11 +170,122 @@ h1 {
     #switch {
         width: 7em;
         /* Adjust width for smaller screens */
-        height: 4em;
+        height: 6em;
         /* Adjust height for smaller screens */
         top: 0;
         /* Adjust top position for smaller screens */
-        right: 0.3em;
+        right: 2em;
         /* Adjust right position for smaller screens */
     }
+
+    .resources {
+        padding: 2rem;
+        grid-template-columns: 1fr; /* Single column for small screens */
+    }
+
 }
+
+/* Email Link Tooltip */
+.email-link {
+    position: relative;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.email-link::after {
+    content: 'mikasiddiqui@gmail.com'; /* Your email address */
+    position: absolute;
+    bottom: 125%; /* Position above the link */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.email-link:hover::after {
+    opacity: 1;
+}
+
+.external-link-icon {
+    width: 1.2rem; /* Reduced from 0.8em to 0.6em */
+    height: 1.2rem; /* Reduced from 0.8em to 0.6em */
+    margin-left: 0.1rem; /* Adjusted spacing */
+    vertical-align: middle;
+}
+
+body.body-dark .external-link-icon {
+    filter: invert(1);
+}
+
+
+
+@media screen and (min-width: 1024px) {
+    .resources {
+        grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+/* Tooltip Container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Tooltip Text */
+.tooltip::after {
+    content: attr(data-tooltip); /* Uses the data-tooltip attribute */
+    position: absolute;
+    
+    bottom: 125%; /* Positions the tooltip above the link */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    color: #fff;
+    padding: 0.4em 0.6em;
+    border-radius: 4px;
+    white-space: normal; /* Allows text to wrap */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+    font-size: 1em; /* Font size */
+    max-width: 20rem; /* Increased max width */
+    word-wrap: break-word; /* Break long words if necessary */
+}
+
+/* Tooltip Arrow */
+.tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: 115%; /* Positions the arrow below the tooltip box */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px; /* Size of the arrow */
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent; /* Arrow color */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+/* Show Tooltip on Hover */
+.tooltip:hover::after,
+.tooltip:hover::before {
+    opacity: 1;
+}
+
