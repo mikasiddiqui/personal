@@ -1,0 +1,132 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    transition: background-color 0.5s;
+    color: black;
+    transition: all .5s ease;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling on smaller screens */
+    overflow-y: auto;
+    /* Enable vertical scrolling if necessary */
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    flex-shrink: 0;
+    /* Prevent the footer from shrinking */
+    width: 100%;
+    /* Ensure footer takes full width */
+    position: fixed;
+    /* Keep the footer fixed at the bottom */
+    bottom: 0;
+    /* Align the footer to the bottom of the viewport */
+    z-index: 999;
+    /* Ensure the footer appears above other content */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 1.6em;
+}
+
+.box {
+    --s: 1em;
+    --t: 0.1em;
+    --g: 1.5em;
+    padding: calc(var(--g) + var(--t));
+    outline-offset: calc(-1*var(--t));
+    transition: .2s;
+    mask:
+        conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s)),
+        linear-gradient(#000 0 0) content-box;
+}
+
+.box.light {
+    outline: var(--t) solid rgba(0, 0, 0, 0.5);
+}
+
+.box.dark {
+    outline: var(--t) solid rgba(255, 255, 255, 0.5);
+}
+
+
+.box:hover {
+    outline-offset: calc(var(--g)/-5);
+}
+
+#switch {
+    border-radius: 1em;
+    text-align: center;
+    width: 20em;
+    height: 4em;
+    padding: 1em;
+    margin: 0.4em;
+    background-size: auto;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+    z-index: 999;
+}
+
+#switch-image {
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+    transform: rotate(0deg);
+    transition: all .5s ease;
+}
+
+#switch-image.darkActive {
+    transform: rotate(180deg);
+    transition: all .5s ease;
+}
+
+#switch-image:hover {
+    transform: rotate(20deg);
+    transition: all .5s ease;
+}
+
+#switch-image.darkActive:hover {
+    transform: rotate(160deg);
+    transition: all .5s ease;
+}
+
+.body-dark {
+    background-color: #000000;
+    color: white;
+    transition: all .5s ease;
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Adjust the breakpoint as needed */
+    #switch {
+        width: 7em;
+        /* Adjust width for smaller screens */
+        height: 4em;
+        /* Adjust height for smaller screens */
+        top: 0;
+        /* Adjust top position for smaller screens */
+        right: 0.3em;
+        /* Adjust right position for smaller screens */
+    }
+}

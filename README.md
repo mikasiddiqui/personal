@@ -1,2 +1,2 @@
-# personal
-My personal website
+# Mika Siddiqui
+Repository for my personal website.
