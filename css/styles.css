@@ -181,6 +181,8 @@ h1 {
     .resources {
         padding: 2rem;
         grid-template-columns: 1fr; /* Single column for small screens */
+        padding-bottom: 4rem; /* Adjust the value as needed */
+
     }
 
 }
