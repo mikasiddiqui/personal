@@ -16,48 +16,27 @@ function darkModeSwitch1() {
     }
 }
 
-// Function to auto-trigger dark mode after sunset
-function autoDarkModeBasedOnSunset() {
-    // Step 1: Get user's location
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            const { latitude, longitude } = position.coords;
+// Function to approximate sunset time based on local time
+function autoDarkModeBasedOnTimezone() {
+    const now = new Date();
+    const localHours = now.getHours(); // Local time (already adjusted for timezone)
 
-            // Step 2: Calculate sunset time
-            const now = new Date();
-            const times = SunCalc.getTimes(now, latitude, longitude);
-            const sunset = times.sunset; // Get sunset time
+    // Approximate sunset time (6 PM) and sunrise time (6 AM)
+    const sunsetHour = 18; // 6 PM
+    const sunriseHour = 6; // 6 AM
 
-            // Step 3: Compare current time with sunset
-            if (now >= sunset) {
-                // It's after sunset: Trigger the dark mode switch
-                const switchImage = document.getElementById("switch-image");
-                if (!switchImage.classList.contains("darkActive")) {
-                    darkModeSwitch1(); // Automatically switch to dark mode
-                }
-            }
-        },
-        (error) => {
-            console.error("Error getting location", error);
-
-            // Step 4: Fallback logic if geolocation fails
-            const now = new Date();
-            const hours = now.getHours();
-
-            // Assume sunset is at 6 PM if geolocation is not allowed
-            if (hours >= 18 || hours < 6) {
-                const switchImage = document.getElementById("switch-image");
-                if (!switchImage.classList.contains("darkActive")) {
-                    darkModeSwitch1(); // Automatically switch to dark mode
-                }
-            }
+    // Check if current time is between sunset and sunrise
+    if (localHours >= sunsetHour || localHours < sunriseHour) {
+        const switchImage = document.getElementById("switch-image");
+        if (!switchImage.classList.contains("darkActive")) {
+            darkModeSwitch1(); // Automatically switch to dark mode
         }
-    );
+    }
 }
 
 // Execute the auto dark mode function on page load
 document.addEventListener("DOMContentLoaded", () => {
-    autoDarkModeBasedOnSunset();
+    autoDarkModeBasedOnTimezone();
 });
 
 // Dark mode switch button handler
