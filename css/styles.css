@@ -196,6 +196,25 @@ h1 {
 
 }
 
+@media screen and (min-width: 1440px) {
+    h1 {
+        padding: 0 8rem; /* Increased padding for super wide screens */
+    }
+
+    p.intro {
+        margin: 0 20rem; /* Adjust horizontal margin for intro text */
+    }
+
+    .resources {
+        padding: 2rem 8rem; /* Increase left and right padding */
+    }
+}
+
+body {
+    overscroll-behavior: contain; /* Prevent background color from showing */
+    background-color: black; /* Ensure body background color is black */
+}
+
 /* Email Link Tooltip */
 .email-link {
     position: relative;
