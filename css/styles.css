@@ -210,10 +210,6 @@ h1 {
     }
 }
 
-body {
-    overscroll-behavior: contain; /* Prevent background color from showing */
-    background-color: black; /* Ensure body background color is black */
-}
 
 /* Email Link Tooltip */
 .email-link {
